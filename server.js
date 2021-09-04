@@ -15,14 +15,12 @@ const peerServer = ExpressPeerServer(server2, {
 
 app.use('/', peerServer);
 
+const options={
+  cors:true,
+  origins:["http://127.0.0.1:3000", "http://localhost:3000","https://video-chat-heroku-server.herokuapp.com"]
+}
 
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-    headers: { "Access-Control-Allow-Origin": true },
-  },
-});
+const io = require("socket.io")(server, options);
 
 const { v4: uuidV4 } = require("uuid");
 const cors = require("cors");
