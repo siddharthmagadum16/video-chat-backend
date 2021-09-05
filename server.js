@@ -1,17 +1,18 @@
 const express = require("express");
 const app = express();
-// const app2 = express();
 const server = require("http").Server(app);
 // const { PeerServer } = require('peer');
 const { ExpressPeerServer } = require('peer');
 
-// const peerServer = PeerServer({ port: 9000, path: '/peer-server' });
+const { v4: uuidV4 } = require("uuid");
+const cors = require("cors");
+app.use(cors());
+app.use(express.json());
 
-// app2.listen(9000)
 const server2 = app.listen(9000);
 
 const peerServer = ExpressPeerServer(server2, {
-  path: '/peer-server'
+  path: '/peerserver'
 });
 
 app.use('/peerjs', peerServer);
@@ -22,12 +23,6 @@ const options={
 }
 
 const io = require("socket.io")(server, options);
-
-const { v4: uuidV4 } = require("uuid");
-const cors = require("cors");
-
-app.use(cors());
-app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json(uuidV4());
