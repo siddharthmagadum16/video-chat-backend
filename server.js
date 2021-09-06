@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
-// const server = require("http").Server(app);
-const port = process.env.PORT || 4000
-const server= app.listen(port)
+const server = require("http").Server(app);
 // const { PeerServer } = require('peer');
 const { ExpressPeerServer } = require('peer');
 
@@ -11,7 +9,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const server2 = app.listen(9000);
+const server2 = app.listen(process.env.PEER_PORT);
 
 const peerServer = ExpressPeerServer(server2, {
   path: '/peerserver'
@@ -50,8 +48,9 @@ io.on("connection", (socket) => {
   });
 });
 
+const port = process.env.PORT || 4000
 
-// server.listen(port,()=>{
-//   console.log(`server is listening on port ${port}`)
-// });
+server.listen(port,()=>{
+  console.log(`server is listening on port ${port}`)
+});
 
