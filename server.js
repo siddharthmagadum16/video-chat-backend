@@ -20,7 +20,7 @@ app.use('/peerjs', peerServer);
 
 const options={
   cors:true,
-  origins:["http://127.0.0.1:3000", "http://localhost:3000","https://video-chat-heroku-server.herokuapp.com"]
+  origins:["http://127.0.0.1:3000", "http://localhost:3000","https://video-chat-heroku-frontend.herokuapp.com/"]
 }
 
 const io = require("socket.io")(server, options);
