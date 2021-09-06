@@ -7,9 +7,10 @@ const { ExpressPeerServer } = require('peer');
 const { v4: uuidV4 } = require("uuid");
 const cors = require("cors");
 app.use(cors());
+
 app.use(express.json());
 
-const server2 = app.listen(process.env.PEER_PORT);
+const server2 = app.listen(443);
 
 const peerServer = ExpressPeerServer(server2, {
   path: '/peerserver'
