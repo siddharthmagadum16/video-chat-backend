@@ -13,14 +13,25 @@ app.use(express.json());
 const server2 = app.listen(9000);
 
 const peerServer = ExpressPeerServer(server2, {
-  path: '/peerserver'
+  // path: '/peerserver'
+  debug: true,
+  allow_discovery: true,
 });
 
-app.use('/peerjs', peerServer);
+app.use('/peer-server', peerServer);
+
+server2.on('connection', function(id) {
+  //   console.log(id.localAddress)
+  // console.log(server._clients)
+});
+
+server2.on('disconnect', function(id) {
+  console.log(id + "deconnected")
+});
 
 const options={
   cors:true,
-  origins:["http://127.0.0.1:3000", "http://localhost:3000","https://video-chat-heroku-frontend.herokuapp.com/"]
+  origins:["http://127.0.0.1:5000", "http://localhost:4000","https://video-chat-heroku-frontend.herokuapp.com/"]
 }
 
 const io = require("socket.io")(server, options);
