@@ -6,7 +6,9 @@ const { ExpressPeerServer } = require('peer');
 
 const { v4: uuidV4 } = require("uuid");
 const cors = require("cors");
+
 app.use(cors());
+app.options('*', cors())
 
 app.use(express.json());
 
