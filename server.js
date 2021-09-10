@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 // const { PeerServer } = require('peer');
-const { ExpressPeerServer } = require('peer');
+// const { ExpressPeerServer } = require('peer');
 
 const { v4: uuidV4 } = require("uuid");
 const cors = require("cors");
@@ -12,14 +12,15 @@ app.options('*', cors())
 
 app.use(express.json());
 
-const server2 = app.listen(443);
+// const server2 = app.listen();
 
-const peerServer = ExpressPeerServer(server2, {
-  // path: '/peerserver'
-  debug: true,
-  allow_discovery: true,
-});
+// const peerServer = ExpressPeerServer(server2, {
+//   // path: '/peerserver'
+//   debug: true,
+//   allow_discovery: true,
+// });
 
+/*
 app.use('/peer-server', peerServer);
 
 server2.on('connection', function(id) {
@@ -30,7 +31,7 @@ server2.on('connection', function(id) {
 server2.on('disconnect', function(id) {
   console.log(id + "deconnected")
 });
-
+*/
 const options={
   cors:true,
   origins:["http://127.0.0.1:5000", "http://localhost:4000","https://video-chat-heroku-frontend.herokuapp.com/"]
