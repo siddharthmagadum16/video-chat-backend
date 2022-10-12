@@ -15,12 +15,14 @@ const options = {
     "http://127.0.0.1:5000",
     "http://localhost:4000",
     "https://video-chat-heroku-frontend.herokuapp.com/",
+    "https://coffee-lemming-cape.cyclic.app/"
   ],
 };
 
 const io = require("socket.io")(server, options);
 
 app.get("/", (req, res) => {
+    console.log('connected')
   res.json(uuidV4());
 });
 
