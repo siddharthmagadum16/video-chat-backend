@@ -12,17 +12,19 @@ app.use(express.json());
 const options = {
   cors: true,
   origins: [
-    "http://127.0.0.1:5000",
-    "http://localhost:4000",
+    "http://localhost:3000",
     "https://video-chat-heroku-frontend.herokuapp.com/",
-    "https://coffee-lemming-cape.cyclic.app/"
+    "https://video-chat-frontend-siddharthmagadum16.vercel.app/",
+    "https://video-chat-frontend.vercel.app/",
+    "https://video-chat-frontend-two.vercel.app/",
+    "https://coffee-lemming-cape.cyclic.app/",
   ],
+  allowEIO3: true,
 };
 
 const io = require("socket.io")(server, options);
 
 app.get("/", (req, res) => {
-    console.log('connected')
   res.json(uuidV4());
 });
 
